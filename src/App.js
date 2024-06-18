@@ -1,7 +1,10 @@
 import "./App.css";
+import { Todowrapper } from "./TodoWrapper";
 
-function App() {
-  return <div className="App"></div>;
+export default function App() {
+  return (
+    <div className="App">
+      <Todowrapper />
+    </div>
+  );
 }
-
-export default App;
