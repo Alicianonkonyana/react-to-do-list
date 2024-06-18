@@ -27,19 +27,37 @@ export const Todowrapper = () => {
       )
     );
   };
-
+  const editTodo = (id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id == id ? { ...todo, isEditing: !todo.isEditing } : todo
+      )
+    );
+  };
+  const editTask = (task, id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
+      )
+    );
+  };
   return (
     <div className="Todowrapper">
       <h1>Get things done!</h1>
       <TodoForm addTodo={addTodo} />
-      {todos.map((todo, index) => (
-        <Todo
-          task={todo}
-          key={index}
-          toggleComplete={toggleComplete}
-          deleteTodo={deleteTodo}
-        />
-      ))}
+      {todos.map((todo, index) =>
+        todo.isEditing ? (
+          <editForm editTodo={editTask} task={todo} />
+        ) : (
+          <Todo
+            task={todo}
+            key={index}
+            toggleComplete={toggleComplete}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
+        )
+      )}
     </div>
   );
 };
